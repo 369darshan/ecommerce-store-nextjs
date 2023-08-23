@@ -5,6 +5,7 @@ import IconButton from "@/components/ui/icon-button";
 import { Product } from "@/types";
 import { Expand, ShoppingCart } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ProductCard {
     data: Product;
@@ -13,8 +14,14 @@ interface ProductCard {
 const ProductCard: React.FC<ProductCard> = ({
     data
 }) => {
+    const router = useRouter();
+
+    const hadleClick = () => {
+        router.push(`/product/${data?.id}`);
+    }
+
     return (
-        <div className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
+        <div onClick={hadleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
             {/* image and Actions */}
             <div className="aspect-square rounded-xl bg-gray-100 relative">
                 <Image
